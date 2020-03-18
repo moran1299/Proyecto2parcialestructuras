@@ -1,26 +1,34 @@
 package edu.ujcv.progra1;
 
-public class BubleSort implements SortTester {
-    @Override
-    public long sort(int[] array) {
-        long start = System.currentTimeMillis();
-        bubleSort(array);
+class Bublesort {
+    static void BubleSort(int[] arr) {
+        int n = arr.length;
+        int temp = 0;
 
-        long end = System.currentTimeMillis();
-
-        return end - start;
-    }
-
-    public static int[] bubleSort(int[] a){
-        for (int i = 0; i < a.length ; i++) {
-            for (int j = 0; j < a.length; j++) {
-                if(a[i] > a[j]){
-                    int temp = a[i];
-                    a[i] = a[j];
-                    a[j] = temp;
+        for(int i = 0; i < n; i++) {
+            for(int j=1; j < (n-i); j++) {
+                if(arr[j-1] > arr[j]) {
+                    temp = arr[j-1];
+                    arr[j-1] = arr[j];
+                    arr[j] = temp;
                 }
             }
         }
-        return a;
+    }
+    public static void main(String[] args) {
+        int arr[] = { 2, 5, -2, 6, -3, 8, 0, -7, -9 };
+        System.out.println("Array Before Bubble Sort");
+
+        for(int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        BubleSort(arr);
+        System.out.println("Array After Bubble Sort");
+
+        for(int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
     }
 }
+
