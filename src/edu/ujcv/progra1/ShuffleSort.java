@@ -3,47 +3,36 @@ package edu.ujcv.progra1;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ShuffleSort implements SortTester {
-    @Override
-    public long sort(int[] array) {
-        long start = System.currentTimeMillis();
-        shuffleSort(array);
+public class ShuffleSort {
 
-        long end = System.currentTimeMillis();
+    public ShuffleSort() {
 
-        return end - start;
     }
 
-    public int[] shuffleSort(int[] array) { // n * n ^n
-        int [] temp = new int[array.length];
-        ArrayList<Integer> numeros = new ArrayList<>();
-        while (true) {
-
-            for (int i = 0; i < array.length; i++) {
-                numeros.add(array[i]);
-            }
-            Random r = new Random();
-            for (int i = 0; i < temp.length; i++) {
-                temp[i] = numeros.remove(r.nextInt(numeros.size()));
-            }
-
-            boolean ordenado = true;
-
-            for (int i = 0; i < temp.length && ordenado; i++) {
-                for (int j = i; j < temp.length; j++) {
-                    if (temp[i] > temp[j]) {
-                        ordenado = false;
-                        numeros.clear();
-                    }
-                }
-            }
-            if(ordenado){
-                break;
-            }
-
+    public static void shuffleSort(int[] a) {
+        int n = a.length;
+        Random random = new Random();
+        random.nextInt();
+        for (int i = 0; i < n; i++) {
+            int change = i + random.nextInt(n - i);
+            swap(a, i, change);
         }
+    }
 
-        return temp;
+    private static void swap(int[] a, int i, int change) {
+        int helper = a[i];
+        a[i] = a[change];
+        a[change] = helper;
+    }
+
+    public static void main(String[] args) {
+        int[] a = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+        shuffleSort(a);
+        for (int i : a) {
+            System.out.println(i);
+        }
+    }
+
+    public ShuffleSort(int[] elementos) {
     }
 }
-
